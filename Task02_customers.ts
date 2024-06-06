@@ -27,7 +27,14 @@ const customerDraft: CustomerDraft = {
 
 // createCustomer(customerDraft).then(log).catch(log);
 
-getCustomerByKey("tt-customer").then(log).catch(log);
+getCustomerByKey("tt-customer")
+    .then(customer =>  createCustomerToken(customer)
+        .then(token => confirmCustomerEmail(token)
+            .then(log).catch(log)))
+    .catch(log);
+
+
+
 
 // getCustomerByKey(customerDraft.key!)
 //     .then(createCustomerToken)
